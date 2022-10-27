@@ -9,9 +9,13 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/idTabLayout"
-        android:backgroundTint="@color/purple_500"
-        app:tabSelectedTextColor="@color/white"
-        app:tabTextColor="@color/grey_700"
+        android:backgroundTint="@color/white"
+        app:tabSelectedTextColor="@color/pink_700"
+        app:tabTextColor="@color/grey_500"
+        app:tabIndicatorColor="@color/pink_700"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="3dp"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

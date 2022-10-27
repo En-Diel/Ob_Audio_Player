@@ -40,6 +40,6 @@ public class MainActivity extends AppCompatActivity {
         // Set adapter to viewpager2
         viewPager2.setAdapter(viewPager2FragmentAdapter);
         // Remove default elevation of action bar
-        getSupportActionBar().setElevation(0);
+        //getSupportActionBar().setElevation(0);
     }
 }

@@ -10,4 +10,8 @@
     <color name="grey_200">#8e8e8e</color>
     <color name="grey_500">#616161</color>
     <color name="grey_700">#373737</color>
+    <color name="pink_200">#fa5788</color>
+    <color name="pink_500">#c2185b</color>
+    <color name="pink_700">#8c0032</color>
+    <color name="ActionBarTextColor">#616161</color>
 </resources>
