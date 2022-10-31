@@ -7,12 +7,19 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     // Declare variables
@@ -43,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE);
         }else {
             Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+            getAllTracks(this);
         }
     }
 
@@ -53,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // We do some with permission granted
                 Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+                getAllTracks(this);
             }else {
                 ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE);
             }
@@ -70,5 +79,40 @@ public class MainActivity extends AppCompatActivity {
         viewPager2.setAdapter(viewPager2FragmentAdapter);
         // Remove default elevation of action bar
         //getSupportActionBar().setElevation(0);
+    }
+
+    // Method to return an arrayList of music files
+    public static ArrayList<MusicFilesModel> getAllTracks(Context context) {
+        ArrayList<MusicFilesModel> tempTrackList = new ArrayList<>();
+        Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+        String projection[] = {MediaStore.Audio.Media.DATA, // Equals to path
+                                MediaStore.Audio.Media._ID,
+                                MediaStore.Audio.Media.TITLE,
+                                MediaStore.Audio.Media.ARTIST,
+                                MediaStore.Audio.Media.TRACK,
+                                MediaStore.Audio.Media.ALBUM,
+                                MediaStore.Audio.Media.DURATION};
+
+        Cursor cursor = context.getContentResolver().query(uri, projection,null,null,null);
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                String path = cursor.getString(0);
+                String id = cursor.getString(1);
+                String title = cursor.getString(2);
+                String artist = cursor.getString(3);
+                String track = cursor.getString(4);
+                String album = cursor.getString(5);
+                String duration = cursor.getString(6);
+
+                // We call the model class MusicFilsModel
+                MusicFilesModel musicFilesModel = new MusicFilesModel(path, id, title, artist, track, album, duration);
+                // Let's Log to test if works
+                Log.e("Path" + path,"Album" + album);
+                // Then add the data into the empty initialized ArrayList
+                tempTrackList.add(musicFilesModel);
+            }
+            cursor.close();
+        }
+        return tempTrackList;
     }
 }
