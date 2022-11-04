@@ -30,15 +30,14 @@ public class MainActivity extends AppCompatActivity {
 
     ViewPager2FragmentAdapter viewPager2FragmentAdapter;
     public static final int REQUEST_CODE = 1; // Code for checking the permissions
+    static ArrayList<MusicFilesModel> musicFiles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+        // Checking for permssion
         permission();
-        // Initialize views
-        init();
         // Bind and set TabLayout to ViewPager2, and set labels for every tab
         new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {tab.setText(tabLabels[position]);}).attach();
         // Set default position to 1 instead of 0
@@ -50,7 +49,9 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE);
         }else {
             Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
-            getAllTracks(this);
+            musicFiles = getAllTracks(this);
+            // Initialize views
+            init();
         }
     }
 
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // We do some with permission granted
                 Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
-                getAllTracks(this);
+                musicFiles = getAllTracks(this);
             }else {
                 ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE);
             }
@@ -83,7 +84,9 @@ public class MainActivity extends AppCompatActivity {
 
     // Method to return an arrayList of music files
     public static ArrayList<MusicFilesModel> getAllTracks(Context context) {
+        // Initialize the ArrayList model
         ArrayList<MusicFilesModel> tempTrackList = new ArrayList<>();
+
         Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         String projection[] = {MediaStore.Audio.Media.DATA, // Equals to path
                                 MediaStore.Audio.Media._ID,
