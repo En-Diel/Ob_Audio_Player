@@ -60,6 +60,10 @@ public class MusicFilesAdapter extends RecyclerView.Adapter<MusicFilesAdapter.My
                             case R.id.idShare:
                                 Toast.makeText(mContext, "Share Clicked", Toast.LENGTH_SHORT).show();
                                 share();
+                            case R.id.idAddToPlaylist:
+                                Toast.makeText(mContext, "Add to playlist Clicked", Toast.LENGTH_SHORT).show();
+                                addToPlaylist();
+                                break;
                             case R.id.idSetRingtone:
                                 Toast.makeText(mContext, "Set as ringtone Clicked", Toast.LENGTH_SHORT).show();
                                 setAsRingtone();
@@ -74,6 +78,9 @@ public class MusicFilesAdapter extends RecyclerView.Adapter<MusicFilesAdapter.My
                 });
             }
         });
+    }
+
+    private void addToPlaylist() {
     }
 
     private void setAsRingtone() {

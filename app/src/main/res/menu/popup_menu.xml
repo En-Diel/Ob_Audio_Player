@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--TODO: I WILL SET THE ANIMATION TO SHOW WHEN THE MORE IMAGE IS CLICKED AND
+    THEN IT CHANGES THE COLOR WHEN CLICKED-->
     <item
         android:title="Info"
         android:id="@+id/idInfo"
@@ -9,6 +11,11 @@
     <item
         android:title="Share"
         android:id="@+id/idShare"
+        app:showAsAction="never"
+        />
+    <item
+        android:title="Add to playlist"
+        android:id="@+id/idAddToPlaylist"
         app:showAsAction="never"
         />
     <item
