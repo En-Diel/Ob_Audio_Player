@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="170dp"
             android:id="@+id/idAlbumArtWork"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/ic_launcher_foreground"/>
 
         <TextView
             android:layout_width="140dp"
