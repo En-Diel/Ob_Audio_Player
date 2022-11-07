@@ -8,13 +8,33 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:id="@+id/idTracksArtWork"
-        android:src="@drawable/ic_launcher_background"/>
+        android:src="@drawable/ic_headphones"
+        android:padding="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Track Title"
         android:id="@+id/idTrackTitle"
-        android:layout_toEndOf="@+id/idTracksArtWork"/>
+        android:layout_toEndOf="@+id/idTracksArtWork"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="12dp"
+        android:ellipsize="end"
+        android:maxLines="1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Artist Name"
+        android:id="@+id/idArtistName"
+        android:layout_toEndOf="@+id/idTracksArtWork"
+        android:textColor="@color/ActionBarTextColor"
+        android:textSize="12sp"
+        android:layout_below="@+id/idTrackTitle"
+        android:layout_marginStart="5dp"
+        android:ellipsize="end"
+        android:maxLines="1" />
 
 </RelativeLayout>
