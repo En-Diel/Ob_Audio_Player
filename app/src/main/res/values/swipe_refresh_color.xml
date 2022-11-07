@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="swipeRefreshColor">
+        <item>@color/pink_700</item>
+    </array>
+</resources>

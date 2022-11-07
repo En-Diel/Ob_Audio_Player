@@ -37,6 +37,7 @@ public class TracksFragment extends Fragment {
             musicFilesAdapter = new MusicFilesAdapter(getContext(), musicFiles);
             tracksRecyclerView.setAdapter(musicFilesAdapter);
             tracksRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+            swipeRefreshLayout.setColorSchemeColors(getResources().getIntArray(R.array.swipeRefreshColor));
             swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
