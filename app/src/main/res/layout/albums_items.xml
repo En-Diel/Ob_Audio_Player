@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="170dp"
+    android:layout_height="200dp"
+    android:id="@+id/idAlbumItems">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/idAlbumRelativeLayout">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:id="@+id/idAlbumArtWork"
+            android:src="@drawable/ic_launcher_background"/>
+
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/idAlbumName"
+            android:text="Artist Name"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
