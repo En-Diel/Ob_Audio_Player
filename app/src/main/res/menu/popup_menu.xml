@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:title="Info"
+        android:id="@+id/idInfo"
+        app:showAsAction="never"
+        />
+    <item
+        android:title="Share"
+        android:id="@+id/idShare"
+        app:showAsAction="never"
+        />
+    <item
+        android:title="Set as ringtone"
+        android:id="@+id/idSetRingtone"
+        app:showAsAction="never"
+        />
+    <item
+        android:title="Delete"
+        android:id="@+id/idDelete"
+        app:showAsAction="never"
+        />
+</menu>

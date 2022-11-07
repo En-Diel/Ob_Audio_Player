@@ -22,6 +22,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="12dp"
         android:ellipsize="end"
+        android:layout_toStartOf="@id/idMoreOptions"
         android:maxLines="1"/>
 
     <TextView
@@ -34,7 +35,17 @@
         android:textSize="12sp"
         android:layout_below="@+id/idTrackTitle"
         android:layout_marginStart="5dp"
+        android:layout_toStartOf="@id/idMoreOptions"
         android:ellipsize="end"
         android:maxLines="1" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/idMoreOptions"
+        android:src="@drawable/ic_more"
+        android:padding="5dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"/>
 
 </RelativeLayout>
