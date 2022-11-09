@@ -34,6 +34,8 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull MyViewHolder3 holder, int position) {
         // Setting the album title
         holder.albumTitle.setText(albumList.get(position).getAlbum());
+        // Setting the artist name
+        holder.artistName.setText(albumList.get(position).getArtist());
         // Binding the album artwork
         byte[] image = Utilize.getAlbumArt(albumList.get(position).getPath());
         if (image != null) {
@@ -51,10 +53,12 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.MyViewHolder
     public class MyViewHolder3 extends RecyclerView.ViewHolder {
         ImageView albumArtWork;
         TextView albumTitle;
+        TextView artistName;
         public MyViewHolder3(@NonNull View itemView) {
             super(itemView);
-            albumArtWork = itemView.findViewById(R.id.idAlbumArtWork);
-            albumTitle = itemView.findViewById(R.id.idAlbumTitle);
+            albumArtWork = itemView.findViewById(R.id.idAlbumFragAlbumArtWork);
+            albumTitle = itemView.findViewById(R.id.idAlbumFragAlbumTitle);
+            artistName = itemView.findViewById(R.id.idAlbumFragArtistName);
         }
     }
 }

@@ -3,16 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="230dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/idAlbumItems"
+    android:id="@+id/idAlbumFragAlbumItems"
     android:layout_margin="20dp">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/idAlbumArtCard"
+            android:id="@+id/idAlbumFragAlbumArtCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="10dp">
                 <ImageView
-                    android:id="@+id/idAlbumArtWork"
+                    android:id="@+id/idAlbumFragAlbumArtWork"
                     android:layout_width="match_parent"
                     android:layout_height="170dp"
                     android:layout_alignParentStart="true"
@@ -27,15 +27,15 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/idAlbumTitle"
+            android:id="@+id/idAlbumFragAlbumTitle"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/idArtistName"
-            android:layout_below="@+id/idAlbumArtCard"
+            android:layout_above="@+id/idAlbumFragArtistName"
+            android:layout_below="@+id/idAlbumFragAlbumArtCard"
             android:layout_alignParentStart="true"
             android:layout_marginStart="0dp"
             android:layout_marginTop="12dp"
-            android:layout_toStartOf="@+id/idMenuAlbumOptions"
+            android:layout_toStartOf="@+id/idAlbumFragMenuAlbumOptions"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@string/album_title"
@@ -43,7 +43,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/idArtistName"
+            android:id="@+id/idAlbumFragArtistName"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -54,14 +54,14 @@
             android:textSize="12sp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:layout_toStartOf="@+id/idMenuAlbumOptions"
+            android:layout_toStartOf="@+id/idAlbumFragMenuAlbumOptions"
             android:textColor="@color/ActionBarTextColor" />
 
         <ImageView
-            android:id="@+id/idMenuAlbumOptions"
+            android:id="@+id/idAlbumFragMenuAlbumOptions"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_below="@+id/idAlbumArtCard"
+            android:layout_below="@+id/idAlbumFragAlbumArtCard"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="20dp"

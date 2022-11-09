@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class ArtistsAdapter extends RecyclerView.Adapter<ArtistsAdapter.MyViewHolder2> {
@@ -30,7 +32,18 @@ public class ArtistsAdapter extends RecyclerView.Adapter<ArtistsAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder2 holder, int position) {
+        // Setting artist name
         holder.artistName.setText(artistsFiles.get(position).getArtist());
+        // Setting album title
+        holder.albumName.setText(artistsFiles.get(position).getAlbum());
+        // Getting the image path
+        byte[] image = Utilize.getAlbumArt(artistsFiles.get(position).getPath());
+        if (image != null) {
+            // Binding the image
+            Glide.with(mContext).asBitmap().load(image).into(holder.artistArtWork);
+        }else {
+            Glide.with(mContext).asBitmap().load(R.drawable.ic_headphones).into(holder.artistArtWork);
+        }
     }
 
     @Override
@@ -41,10 +54,12 @@ public class ArtistsAdapter extends RecyclerView.Adapter<ArtistsAdapter.MyViewHo
     public class MyViewHolder2 extends RecyclerView.ViewHolder {
         ImageView artistArtWork;
         TextView artistName;
+        TextView albumName;
         public MyViewHolder2(@NonNull View itemView) {
             super(itemView);
-            artistArtWork = itemView.findViewById(R.id.idArtistArtWork);
-            artistName = itemView.findViewById(R.id.idArtistName);
+            artistArtWork = itemView.findViewById(R.id.idArtistsFragArtistArtWork);
+            artistName = itemView.findViewById(R.id.idArtistsFragArtistName);
+            albumName = itemView.findViewById(R.id.idArtistsFragAlbumTitle);
         }
     }
 }

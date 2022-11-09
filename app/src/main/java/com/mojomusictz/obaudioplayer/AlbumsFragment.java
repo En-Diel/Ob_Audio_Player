@@ -38,8 +38,9 @@ public class AlbumsFragment extends Fragment {
             albumAdapter = new AlbumAdapter(getContext(), musicFiles);
             albumRecyclerView.setAdapter(albumAdapter);
             albumRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-            // Implementing swipe refresh
+            // Set the color of a refreshing icon
             swipeRefreshLayout.setColorSchemeColors(getResources().getIntArray(R.array.swipeRefreshColor));
+            // Implementing swipe refresh
             swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
