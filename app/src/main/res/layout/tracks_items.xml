@@ -2,14 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/idTracksItems">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:id="@+id/idTracksArtWork"
         android:src="@drawable/ic_headphones"
-        android:padding="5dp" />
+        app:shapeAppearanceOverlay="@style/roundedCornersImageView"
+        android:padding="5dp"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:layout_width="wrap_content"

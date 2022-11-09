@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.MyViewHolder3> {
@@ -30,7 +32,15 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder3 holder, int position) {
+        // Setting the album title
         holder.albumTitle.setText(albumList.get(position).getAlbum());
+        // Binding the album artwork
+        byte[] image = Utilize.getAlbumArt(albumList.get(position).getPath());
+        if (image != null) {
+            Glide.with(mContext).asBitmap().load(image).into(holder.albumArtWork);
+        }else {
+            Glide.with(mContext).asBitmap().load(R.drawable.ic_headphones).into(holder.albumArtWork);
+        }
     }
 
     @Override

@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
+    android:layout_width="match_parent"
     android:layout_height="280dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/idAlbumItems"
-    android:layout_margin="6dp"
-    app:cardCornerRadius="10dp">
+    android:layout_margin="20dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/idAlbumRelativeLayout">
-
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/idAlbumArtWork"
             android:layout_width="match_parent"
             android:layout_height="170dp"
@@ -22,9 +16,11 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
-            android:src="@drawable/ic_headphones" />
+            android:src="@drawable/ic_headphones"
+            app:shapeAppearanceOverlay="@style/roundedCornersImageView"
+            android:scaleType="center" />
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/idAlbumPlayBtn"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -32,7 +28,9 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="120dp"
-            android:src="@drawable/ic_play" />
+            android:src="@drawable/ic_play3"
+            android:background="@drawable/album_artwork_layout" />
+
 
         <TextView
             android:id="@+id/idAlbumTitle"
@@ -73,8 +71,10 @@
             android:layout_centerVertical="true"
             android:layout_marginTop="60dp"
             android:layout_marginBottom="10dp"
-            android:padding="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="0dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:src="@drawable/ic_more" />
 
-    </RelativeLayout>
 </RelativeLayout>
