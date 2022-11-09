@@ -1,7 +1,8 @@
 package com.mojomusictz.obaudioplayer;
 
 import android.media.MediaMetadataRetriever;
-import android.net.Uri;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class Utilize {
     // Private constructor to prevent instantiation
@@ -14,4 +15,5 @@ public class Utilize {
         retriever.release();
         return art;
     }
+
 }

@@ -31,12 +31,13 @@ public class TracksFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tracks, container, false);
         tracksRecyclerView = view.findViewById(R.id.idTracksRecyclerView);
-        swipeRefreshLayout = view.findViewById(R.id.idRefreshLayout);
+        swipeRefreshLayout = view.findViewById(R.id.idTracksRefreshLayout);
         tracksRecyclerView.setHasFixedSize(true);
         if (!(musicFiles.size() < 1)) {
             musicFilesAdapter = new MusicFilesAdapter(getContext(), musicFiles);
             tracksRecyclerView.setAdapter(musicFilesAdapter);
             tracksRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+            // Implementing Swipe refresh
             swipeRefreshLayout.setColorSchemeColors(getResources().getIntArray(R.array.swipeRefreshColor));
             swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
@@ -48,7 +49,7 @@ public class TracksFragment extends Fragment {
         }
         return view;
     }
-
+    // This method for rearranging the items using swipe refresh
     private void RearrangeItems() {
         Collections.shuffle(musicFiles, new Random(System.currentTimeMillis()));
         musicFilesAdapter = new MusicFilesAdapter(getContext(), musicFiles);
