@@ -4,6 +4,6 @@
 <layer-list
     xmlns:android="http://schemas.android.com/apk/res/android" >
     <!-- set image to be shown on circular ImageView -->
-    <item android:drawable="@drawable/ic_play3"/>
+    <item android:drawable="@drawable/ic_play"/>
     <item android:drawable="@drawable/album_artwork_layout"/>
 </layer-list>

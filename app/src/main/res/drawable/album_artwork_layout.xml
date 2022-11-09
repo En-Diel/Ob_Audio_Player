@@ -8,9 +8,5 @@
     android:useLevel="false" >
 
     <solid
-        android:color="@android:color/transparent" />
-
-    <stroke
-        android:width="9dp"
         android:color="@android:color/white" />
 </shape>
