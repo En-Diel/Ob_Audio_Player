@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Checking for permssion
+        // Checking for permsion
         permission();
         // Bind and set TabLayout to ViewPager2, and set labels for every tab
         new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {tab.setText(tabLabels[position]);}).attach();

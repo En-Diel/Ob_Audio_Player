@@ -7,7 +7,7 @@
         <entry key="app/src/main/res/drawable/artwork_layout.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/drawable/image.xml" value="0.29794871794871797" />
         <entry key="app/src/main/res/drawable/tracks_items_layout.xml" value="0.29794871794871797" />
-        <entry key="app/src/main/res/layout/albums_items.xml" value="0.5354477611940298" />
+        <entry key="app/src/main/res/layout/albums_items.xml" value="0.335" />
         <entry key="app/src/main/res/layout/artists_items.xml" value="0.25925925925925924" />
         <entry key="app/src/main/res/layout/fragment_albums.xml" value="0.25462962962962965" />
         <entry key="app/src/main/res/layout/fragment_tracks.xml" value="0.28205128205128205" />
