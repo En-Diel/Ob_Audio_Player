@@ -90,6 +90,7 @@ public class MusicFilesAdapter extends RecyclerView.Adapter<MusicFilesAdapter.My
             public void onClick(View v) {
                 //Toast.makeText(mContext, "A Track is Clicked", Toast.LENGTH_SHORT).show(); // Show info for debugging
                 Intent intent = new Intent(mContext, PlayerActivity.class);
+                intent.putExtra("position", position);
                 mContext.startActivity(intent);
             }
         });

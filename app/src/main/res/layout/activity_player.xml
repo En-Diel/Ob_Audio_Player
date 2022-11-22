@@ -86,12 +86,12 @@
             android:id="@+id/idIVPlayerMenu"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/ic_menu"
             android:layout_marginTop="58dp"
-            android:layout_marginEnd="16dp"/>
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_menu" />
         <!-- This enables RadiusCorners in the image view -->
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/idIVCoverArt"
@@ -116,22 +116,24 @@
             android:layout_marginBottom="16dp">
 
             <TextView
-                android:id="@+id/idTVAudioDuration"
+                android:id="@+id/idTVAudioDurationPlayed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:text="@string/sample_time"
-                android:textColor="@color/white"
-                android:layout_marginStart="8dp"/>
+                android:textColor="@color/white" />
 
             <TextView
+                android:id="@+id/idTVAudioDurationTotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/sample_duration"
-                android:textColor="@color/white"
+                android:layout_alignParentEnd="true"
                 android:layout_marginEnd="8dp"
-                android:layout_alignParentEnd="true"/>
+                android:text="@string/sample_duration"
+                android:textColor="@color/white" />
         <!-- Progress/Seek Bar -->
             <com.google.android.material.slider.Slider
+                android:id="@+id/idSeekBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -179,24 +181,24 @@
             android:id="@+id/idIVSkipPrevious"
             android:layout_width="35dp"
             android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
             android:layout_centerVertical="true"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
+            android:layout_marginBottom="72dp"
             android:layout_toStartOf="@+id/idIVPlayPauseBtn"
-            android:src="@drawable/ic_skip_previous"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="72dp"/>
+            android:src="@drawable/ic_skip_previous" />
 
         <ImageView
             android:id="@+id/idIVShuffle"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="32dp"
             android:layout_marginBottom="72dp"
-            android:src="@drawable/ic_shuffle_off"
-            android:layout_alignParentBottom="true"/>
+            android:src="@drawable/ic_shuffle_off" />
     </RelativeLayout>
 
 </RelativeLayout>
