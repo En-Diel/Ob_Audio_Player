@@ -131,7 +131,7 @@
                 android:layout_marginEnd="8dp"
                 android:text="@string/sample_duration"
                 android:textColor="@color/white" />
-        <!-- Progress/Seek Bar -->
+        <!-- Progress/Seek Bar
             <com.google.android.material.slider.Slider
                 android:id="@+id/idSeekBar"
                 android:layout_width="match_parent"
@@ -140,7 +140,17 @@
                 android:layout_marginEnd="40dp"
                 app:haloColor="@color/white"
                 app:thumbRadius="8dp"
-                app:trackHeight="1dp" />
+                app:trackHeight="1dp" />-->
+            <SeekBar
+                android:id="@+id/idSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                app:haloColor="@color/white"
+                app:thumbRadius="8dp"
+                app:trackHeight="1dp"/>
+
 
         </RelativeLayout>
 

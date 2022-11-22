@@ -70,6 +70,24 @@ public class PlayerActivity extends AppCompatActivity {
 
             }
         });*/
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (mediaPlayer != null && fromUser) {
+                    mediaPlayer.seekTo(progress * 1000);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
         blurLayout = findViewById(R.id.idBlurLayout);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); // Ignores the top/bottom app system bars
@@ -99,6 +117,7 @@ public class PlayerActivity extends AppCompatActivity {
             mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
             mediaPlayer.start();
         }
+        seekBar.setMax(mediaPlayer.getDuration() / 1000);
     }
 
     private void initViews() {
@@ -109,7 +128,7 @@ public class PlayerActivity extends AppCompatActivity {
         nextBtn = findViewById(R.id.idIVSkipNext);
         playPauseBtn = findViewById(R.id.idIVPlayPauseBtn);
         repeatBtn = findViewById(R.id.idIVRepeat);
-        //seekBar = findViewById(R.id.idSeekBar);
+        seekBar = findViewById(R.id.idSeekBar);
         artistName = findViewById(R.id.idArtistName);
         trackTitle = findViewById(R.id.idTrackTitle);
         durationPlayed = findViewById(R.id.idTVAudioDurationPlayed);
