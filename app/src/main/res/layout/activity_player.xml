@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/idRLContainerPlayer"
+    tools:context=".PlayerActivity">
+
+    <RelativeLayout
+        android:id="@+id/idPlayerBtnsContainerRL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/idIVCoverArtBlur"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@color/black"
+            android:scaleType="center"
+            android:src="@drawable/homestu" />
+
+        <!-- TODO: THIS IS GRADIENT EFFECT, NOT SHOWN NOW  -->
+        <ImageView
+            android:id="@+id/idIVGradient"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/player_gradient" />
+
+        <!-- Blur Effect, will affect all the elements down from here -->
+        <io.alterac.blurkit.BlurLayout
+            android:id="@+id/idBlurLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:blk_blurRadius="3"
+            app:blk_downscaleFactor="0.12"
+            app:blk_fps="0"
+            android:layout_centerInParent="true" />
+
+        <ImageView
+            android:id="@+id/idIVPlayerBackBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="58dp"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/idTVTrackTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="58dp"
+            android:layout_toStartOf="@+id/idIVPlayerMenu"
+            android:layout_toEndOf="@+id/idIVPlayerBackBtn"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:maxLines="1"
+            android:text="@string/track_title"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/idTVArtistName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/idTVTrackTitle"
+            android:layout_toEndOf="@+id/idIVPlayerBackBtn"
+            android:layout_toStartOf="@+id/idIVPlayerMenu"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:maxLines="1"
+            android:text="Artist Name"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/idIVPlayerMenu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/ic_menu"
+            android:layout_marginTop="58dp"
+            android:layout_marginEnd="16dp"/>
+        <!-- This enables RadiusCorners in the image view -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/idIVCoverArt"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_below="@+id/idTVArtistName"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="115dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            android:background="@color/black"
+            android:scaleType="center"
+            android:src="@drawable/homestu"
+            app:shapeAppearanceOverlay="@style/roundedCornersImageView2" />
+
+        <RelativeLayout
+            android:id="@+id/idSeekBarContainerRL"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_above="@+id/idIVPlayPauseBtn"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/idTVAudioDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1:28"
+                android:textColor="@color/white"
+                android:layout_marginStart="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3:08"
+                android:textColor="@color/white"
+                android:layout_marginEnd="8dp"
+                android:layout_alignParentEnd="true"/>
+        <!-- Progress Bar -->
+            <com.google.android.material.slider.Slider
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                app:haloColor="@color/pink_700"
+                app:thumbRadius="8dp" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/idIVRepeat"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="72dp"
+            android:src="@drawable/ic_repeat_off" />
+
+        <ImageView
+            android:id="@+id/idIVSkipNext"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_skip_next"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/idIVPlayPauseBtn"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="72dp"
+            android:layout_alignParentBottom="true"/>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/idIVPlayPauseBtn"
+            android:layout_centerInParent="true"
+            android:focusable="true"
+            android:clickable="true"
+            android:src="@drawable/ic_play"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="58dp"/>
+
+        <ImageView
+            android:id="@+id/idIVSkipPrevious"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_toStartOf="@+id/idIVPlayPauseBtn"
+            android:src="@drawable/ic_skip_previous"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="72dp"/>
+
+        <ImageView
+            android:id="@+id/idIVShuffle"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="72dp"
+            android:src="@drawable/ic_shuffle_off"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+</RelativeLayout>

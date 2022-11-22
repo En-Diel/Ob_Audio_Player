@@ -1,6 +1,7 @@
 package com.mojomusictz.obaudioplayer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -87,7 +88,9 @@ public class MusicFilesAdapter extends RecyclerView.Adapter<MusicFilesAdapter.My
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "A Track is Clicked", Toast.LENGTH_SHORT).show(); // Show info for debugging
+                //Toast.makeText(mContext, "A Track is Clicked", Toast.LENGTH_SHORT).show(); // Show info for debugging
+                Intent intent = new Intent(mContext, PlayerActivity.class);
+                mContext.startActivity(intent);
             }
         });
     }

@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.mojomusictz.obaudioplayer"
-        minSdk 19
+        minSdk 21
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -43,6 +43,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
     // Swipe refresh library
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-
-
+    // BlurKit Library
+    implementation 'io.alterac.blurkit:blurkit:1.1.0'
 }

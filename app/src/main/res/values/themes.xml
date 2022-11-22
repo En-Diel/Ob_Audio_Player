@@ -19,4 +19,8 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">10dp</item>
     </style>
+    <style name="roundedCornersImageView2" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">40dp</item>
+    </style>
 </resources>

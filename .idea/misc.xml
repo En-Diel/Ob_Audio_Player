@@ -4,8 +4,32 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/bg_gradient.xml" value="0.29794871794871797" />
+        <entry key="app/src/main/res/drawable/border.xml" value="0.3026041666666667" />
+        <entry key="app/src/main/res/drawable/custom_seekbar.xml" value="0.3026041666666667" />
+        <entry key="app/src/main/res/drawable/ic_back.xml" value="0.3026041666666667" />
+        <entry key="app/src/main/res/drawable/ic_menu.xml" value="0.3026041666666667" />
+        <entry key="app/src/main/res/drawable/ic_more.xml" value="0.3026041666666667" />
         <entry key="app/src/main/res/drawable/ic_ob_music_player.xml" value="0.16458333333333333" />
+        <entry key="app/src/main/res/drawable/ic_pause.xml" value="0.3026041666666667" />
+        <entry key="app/src/main/res/drawable/ic_play.xml" value="0.3026041666666667" />
+        <entry key="app/src/main/res/drawable/ic_repeat.xml" value="0.3026041666666667" />
+        <entry key="app/src/main/res/drawable/ic_repeat_off.xml" value="0.3026041666666667" />
+        <entry key="app/src/main/res/drawable/ic_repeat_on.xml" value="0.3026041666666667" />
+        <entry key="app/src/main/res/drawable/ic_repeat_one.xml" value="0.3026041666666667" />
+        <entry key="app/src/main/res/drawable/ic_shuffle_off.xml" value="0.3026041666666667" />
+        <entry key="app/src/main/res/drawable/ic_skip_next.xml" value="0.3026041666666667" />
+        <entry key="app/src/main/res/drawable/ic_skip_previous.xml" value="0.3026041666666667" />
+        <entry key="app/src/main/res/drawable/player_gradient.xml" value="0.28802083333333334" />
+        <entry key="app/src/main/res/drawable/round_background.xml" value="0.3026041666666667" />
+        <entry key="app/src/main/res/drawable/seek_bar_drawable_progress.xml" value="0.3026041666666667" />
+        <entry key="app/src/main/res/drawable/seek_bar_drawable_thumb.xml" value="0.3026041666666667" />
+        <entry key="app/src/main/res/drawable/seekbar_drawable_thum.xml" value="0.3026041666666667" />
         <entry key="app/src/main/res/drawable/splash_background.xml" value="0.29794871794871797" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/activity_player.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/albums_items.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/artists_items.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/fragment_albums.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_tracks.xml" value="0.28205128205128205" />
         <entry key="app/src/main/res/layout/tracks_items.xml" value="0.25" />
       </map>
