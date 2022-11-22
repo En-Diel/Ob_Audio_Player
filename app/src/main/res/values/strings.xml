@@ -6,4 +6,6 @@
     <string name="artist_name">Artist Name</string>
     <string name="image_view_for_album_artwork">Image View for Album Artwork</string>
     <string name="track_title">Track Title</string>
+    <string name="sample_time">1:28</string>
+    <string name="sample_duration">3:08</string>
 </resources>
