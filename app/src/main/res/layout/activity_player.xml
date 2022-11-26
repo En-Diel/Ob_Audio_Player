@@ -138,9 +138,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="40dp"
-                app:haloColor="@color/white"
-                app:thumbRadius="8dp"
-                app:trackHeight="1dp" />
+                android:thumbTint="@color/white"
+                android:progressTint="@color/white"
+                android:progressBackgroundTint="@color/white" />
 
         </RelativeLayout>
 
