@@ -1,21 +1,47 @@
 package com.mojomusictz.obaudioplayer;
 
+import static com.mojomusictz.obaudioplayer.MainActivity.musicFiles;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import io.alterac.blurkit.BlurLayout;
 
 public class PlayerActivity extends AppCompatActivity {
     ActionBar actionBar;
     //RangeBar rangeBar;
+    TextView trackName;
+    TextView artistName;
+    TextView durationPlayed;
+    TextView durationTotal;
+    ImageView coverArt;
+    ImageView nextBtn;
+    ImageView prevBtn;
+    ImageView shuffleBtn;
+    ImageView repeatBtn;
+    ImageView backBtn;
+    ImageView playPause;
+    SeekBar seekBar;
+    int position = -1;
     private BlurLayout blurLayout;
+    static ArrayList<MusicFilesModel> tracksList = new ArrayList<>();
+    static Uri uri;
+    MediaPlayer mediaPlayer;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +78,42 @@ public class PlayerActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         //getWindow().setNavigationBarColor(getResources().getColor(R.color.purple_700));
         getWindow().setStatusBarColor(Color.TRANSPARENT);
+        // Initialize the views with this method
+        initViews();
+        getIntentMethod();
+    }
+
+    private void getIntentMethod() {
+        position = getIntent().getIntExtra("position", -1);
+        tracksList = musicFiles;
+        if (tracksList != null) {
+            playPause.setImageResource(R.drawable.ic_pause);
+            uri = Uri.parse(tracksList.get(position).getPath());
+        }
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
+            mediaPlayer.start();
+        }else {
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
+            mediaPlayer.start();
+        }
+    }
+
+    private void initViews() {
+        trackName = findViewById(R.id.idTrackTitle);
+        artistName = findViewById(R.id.idArtistName);
+        durationPlayed = findViewById(R.id.idTVDurationPlayed);
+        durationTotal = findViewById(R.id.idDurationTotal);
+        coverArt = findViewById(R.id.idIVCoverArt);
+        nextBtn = findViewById(R.id.idIVSkipNext);
+        prevBtn = findViewById(R.id.idIVSkipPrevious);
+        shuffleBtn = findViewById(R.id.idIVShuffle);
+        repeatBtn = findViewById(R.id.idIVRepeat);
+        backBtn = findViewById(R.id.idIVPlayerBackBtn);
+        seekBar = findViewById(R.id.idSeekBar);
+        playPause = findViewById(R.id.idIVPlayPauseBtn);
     }
 
     @Override
