@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -41,6 +42,7 @@ public class PlayerActivity extends AppCompatActivity {
     static ArrayList<MusicFilesModel> tracksList = new ArrayList<>();
     static Uri uri;
     MediaPlayer mediaPlayer;
+    Handler handler = new Handler();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -81,6 +83,50 @@ public class PlayerActivity extends AppCompatActivity {
         // Initialize the views with this method
         initViews();
         getIntentMethod();
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (mediaPlayer != null && fromUser) {
+                    mediaPlayer.seekTo(progress * 1000);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        // We use this thread so as to update the UI as the background process is going on
+        PlayerActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (mediaPlayer != null) {
+                    int mCurrentPosition = mediaPlayer.getCurrentPosition() / 1000;
+                    seekBar.setProgress(mCurrentPosition);
+                    durationPlayed.setText(formattedTime(mCurrentPosition));
+                }
+                handler.postDelayed(this, 1000); // This is time taken to update the seekbar
+            }
+        });
+    }
+
+    private String formattedTime(int mCurrentPosition) {
+        String totalOut;
+        String totalNew;
+        String seconds = String.valueOf(mCurrentPosition % 60);
+        String minutes = String.valueOf(mCurrentPosition / 60);
+        totalOut = minutes + ":" + seconds;
+        totalNew = minutes + ":" + "0" + seconds;
+        if (seconds.length() == 1) {
+            return totalNew;
+        }else {
+            return totalOut;
+        }
     }
 
     private void getIntentMethod() {
@@ -99,6 +145,7 @@ public class PlayerActivity extends AppCompatActivity {
             mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
             mediaPlayer.start();
         }
+        seekBar.setMax(mediaPlayer.getDuration() / 1000);
     }
 
     private void initViews() {
