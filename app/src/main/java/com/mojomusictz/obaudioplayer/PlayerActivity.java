@@ -6,30 +6,36 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.media.MediaMetadata;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import java.util.ArrayList;
-
-import io.alterac.blurkit.BlurLayout;
+import eightbitlab.com.blurview.BlurView;
+import eightbitlab.com.blurview.RenderScriptBlur;
 
 public class PlayerActivity extends AppCompatActivity {
     ActionBar actionBar;
-    //RangeBar rangeBar;
-    TextView trackName;
+    TextView trackTitle;
     TextView artistName;
     TextView durationPlayed;
     TextView durationTotal;
     ImageView coverArt;
+    ImageView blurCoverArt;
     ImageView nextBtn;
     ImageView prevBtn;
     ImageView shuffleBtn;
@@ -38,7 +44,7 @@ public class PlayerActivity extends AppCompatActivity {
     ImageView playPause;
     SeekBar seekBar;
     int position = -1;
-    private BlurLayout blurLayout;
+    BlurView blurView;
     static ArrayList<MusicFilesModel> tracksList = new ArrayList<>();
     static Uri uri;
     MediaPlayer mediaPlayer;
@@ -54,24 +60,6 @@ public class PlayerActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-        // SeekBar Listener
-    /*    rangeBar.setOnRangeBarChangeListener(new RangeBar.OnRangeBarChangeListener() {
-            @Override
-            public void onRangeChangeListener(RangeBar rangeBar, int leftPinIndex, int rightPinIndex, String leftPinValue, String rightPinValue) {
-
-            }
-
-            @Override
-            public void onTouchStarted(RangeBar rangeBar) {
-
-            }
-
-            @Override
-            public void onTouchEnded(RangeBar rangeBar) {
-
-            }
-        });*/
-        blurLayout = findViewById(R.id.idBlurLayout);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); // Ignores the top/bottom app system bars
         // and fill it with design
@@ -82,7 +70,10 @@ public class PlayerActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         // Initialize the views with this method
         initViews();
+        blurBackground(); // Blur the music player activity background
         getIntentMethod();
+        artistName.setText(tracksList.get(position).getArtist()); // Set artist name
+        trackTitle.setText(tracksList.get(position).getTitle()); // set track name
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -113,6 +104,18 @@ public class PlayerActivity extends AppCompatActivity {
                 handler.postDelayed(this, 1000); // This is time taken to update the seekbar
             }
         });
+    }
+
+    private void blurBackground() {
+        float radius = 21f; // Maximum is 25f
+        View decorView = getWindow().getDecorView();
+        ViewGroup rootView = (ViewGroup) decorView.findViewById(android.R.id.content);
+        Drawable windowBackground = decorView.getBackground();
+        blurView.setupWith(rootView).setFrameClearDrawable(windowBackground)
+                .setBlurAlgorithm(new RenderScriptBlur(this))
+                .setBlurRadius(radius)
+                .setHasFixedTransformationMatrix(true);
+
     }
 
     private String formattedTime(int mCurrentPosition) {
@@ -146,14 +149,32 @@ public class PlayerActivity extends AppCompatActivity {
             mediaPlayer.start();
         }
         seekBar.setMax(mediaPlayer.getDuration() / 1000);
+        metaData(uri);
+    }
+
+    private void metaData(Uri uri) {
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        retriever.setDataSource(uri.toString());
+        int durationTotalTime = Integer.parseInt(tracksList.get(position).getDuration());
+        durationTotal.setText(formattedTime(durationTotalTime));
+        byte[] art = retriever.getEmbeddedPicture();
+        if (art != null) {
+            RequestOptions options = new RequestOptions();
+            Glide.with(this).asBitmap().load(art).into(blurCoverArt);
+            Glide.with(this).asBitmap().load(art).into(coverArt);
+        }else {
+            Glide.with(this).asBitmap().load(R.drawable.homestu).into(blurCoverArt);
+            Glide.with(this).asBitmap().load(R.drawable.homestu).into(coverArt);
+        }
     }
 
     private void initViews() {
-        trackName = findViewById(R.id.idTrackTitle);
-        artistName = findViewById(R.id.idArtistName);
+        trackTitle = findViewById(R.id.idTVTrackTitle);
+        artistName = findViewById(R.id.idTVArtistName);
         durationPlayed = findViewById(R.id.idTVDurationPlayed);
         durationTotal = findViewById(R.id.idDurationTotal);
         coverArt = findViewById(R.id.idIVCoverArt);
+        blurCoverArt = findViewById(R.id.idIVCoverArtBlur);
         nextBtn = findViewById(R.id.idIVSkipNext);
         prevBtn = findViewById(R.id.idIVSkipPrevious);
         shuffleBtn = findViewById(R.id.idIVShuffle);
@@ -161,17 +182,6 @@ public class PlayerActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.idIVPlayerBackBtn);
         seekBar = findViewById(R.id.idSeekBar);
         playPause = findViewById(R.id.idIVPlayPauseBtn);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        blurLayout.startBlur();
-    }
-
-    @Override
-    protected void onStop() {
-        blurLayout.pauseBlur();
-        super.onStop();
+        blurView = findViewById(R.id.idBlurView);
     }
 }

@@ -33,6 +33,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -43,6 +44,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
     // Swipe refresh library
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-    // BlurKit Library
-    implementation 'io.alterac.blurkit:blurkit:1.1.0'
+    // BlurView Library
+    implementation 'com.eightbitlab:blurview:1.6.3'
 }
