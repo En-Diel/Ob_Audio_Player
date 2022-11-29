@@ -195,13 +195,133 @@ public class PlayerActivity extends AppCompatActivity {
         prevThreadBtn();
         super.onResume();
     }
-
+    // Thread for previous btn
     private void prevThreadBtn() {
+        prevThread = new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                prevBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        prevBtnClicked();
+                    }
+                });
+            }
+        };
+        prevThread.start();
     }
-
+    // Method for previous btn to work
+    private void prevBtnClicked() {
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            position = ((position -1) < 0 ? (tracksList.size()) : (position -1));
+            uri = Uri.parse(tracksList.get(position).getPath());
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
+            metaData(uri);
+            trackTitle.setText(tracksList.get(position).getTitle());
+            artistName.setText(tracksList.get(position).getArtist());
+            seekBar.setMax(mediaPlayer.getDuration() / 1000);
+            PlayerActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mediaPlayer != null) {
+                        int mCurrentPosition = mediaPlayer.getCurrentPosition() / 1000;
+                        seekBar.setProgress(mCurrentPosition);
+                    }
+                    handler.postDelayed(this, 1000);
+                }
+            });
+            playPauseBtn.setImageResource(R.drawable.ic_pause);
+            mediaPlayer.start();
+        }else {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            position = ((position -1) < 0 ? (tracksList.size()) : (position -1));
+            uri = Uri.parse(tracksList.get(position).getPath());
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
+            metaData(uri);
+            trackTitle.setText(tracksList.get(position).getTitle());
+            artistName.setText(tracksList.get(position).getArtist());
+            seekBar.setMax(mediaPlayer.getDuration() / 1000);
+            PlayerActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mediaPlayer != null) {
+                        int mCurrentPosition = mediaPlayer.getCurrentPosition() / 1000;
+                        seekBar.setProgress(mCurrentPosition);
+                    }
+                    handler.postDelayed(this, 1000);
+                }
+            });
+            playPauseBtn.setImageResource(R.drawable.ic_play);
+        }
+    }
+    // Thread for the next btn
     private void nextThreadBtn() {
+        nextThread = new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                nextBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        nextBtnClicked();
+                    }
+                });
+            }
+        };
+        nextThread.start();
     }
-
+    // Method for next btn to work
+    private void nextBtnClicked() {
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            position = ((position + 1) % tracksList.size());
+            uri = Uri.parse(tracksList.get(position).getPath());
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
+            metaData(uri);
+            trackTitle.setText(tracksList.get(position).getTitle());
+            artistName.setText(tracksList.get(position).getArtist());
+            seekBar.setMax(mediaPlayer.getDuration() / 1000);
+            PlayerActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mediaPlayer != null) {
+                        int mCurrentPosition = mediaPlayer.getCurrentPosition() / 1000;
+                        seekBar.setProgress(mCurrentPosition);
+                    }
+                    handler.postDelayed(this, 1000);
+                }
+            });
+            playPauseBtn.setImageResource(R.drawable.ic_pause);
+            mediaPlayer.start();
+        }else {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            position = ((position + 1) % tracksList.size());
+            uri = Uri.parse(tracksList.get(position).getPath());
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
+            metaData(uri);
+            trackTitle.setText(tracksList.get(position).getTitle());
+            artistName.setText(tracksList.get(position).getArtist());
+            seekBar.setMax(mediaPlayer.getDuration() / 1000);
+            PlayerActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mediaPlayer != null) {
+                        int mCurrentPosition = mediaPlayer.getCurrentPosition() / 1000;
+                        seekBar.setProgress(mCurrentPosition);
+                    }
+                    handler.postDelayed(this, 1000);
+                }
+            });
+            playPauseBtn.setImageResource(R.drawable.ic_play);
+        }
+    }
+    // Thread for play/pause btn
     private void playThreadBtn() {
         playThread = new Thread() {
             @Override
@@ -217,7 +337,7 @@ public class PlayerActivity extends AppCompatActivity {
         };
         playThread.start();
     }
-
+    // Method for play/pause btn to work
     private void playPauseBtnClicked() {
         if (mediaPlayer.isPlaying()) {
             playPauseBtn.setImageResource(R.drawable.ic_play);
