@@ -24,28 +24,21 @@
             android:src="@drawable/homestu" />
 
         <!-- TODO: THIS IS GRADIENT EFFECT, NOT SHOWN NOW  -->
-        <ImageView
+        <!--<ImageView
             android:id="@+id/idIVGradient"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_alignParentBottom="true"
-            android:src="@drawable/player_gradient" />
+            android:src="@drawable/player_gradient" />-->
 
-        <!-- Blur Effect, will affect all the elements down from here -->
-        <!--<io.alterac.blurkit.BlurLayout
-            android:id="@+id/idBlurLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:blk_blurRadius="3"
-            app:blk_downscaleFactor="0.12"
-            app:blk_fps="0"
-            android:layout_centerInParent="true" />-->
+        <!-- Blur Effect, will affect all the elements above-->
         <eightbitlab.com.blurview.BlurView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/idBlurView">
 
-
+            <!--Any child View here, TabLayout for example.
+            This View will NOT be blurred -->
 
         </eightbitlab.com.blurview.BlurView>
 
@@ -175,15 +168,15 @@
             android:layout_alignParentBottom="true"/>
 
         <ImageView
+            android:id="@+id/idIVPlayPauseBtn"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:id="@+id/idIVPlayPauseBtn"
-            android:layout_centerInParent="true"
-            android:focusable="true"
-            android:clickable="true"
-            android:src="@drawable/ic_play"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="58dp"/>
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="58dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_play" />
 
         <ImageView
             android:id="@+id/idIVSkipPrevious"

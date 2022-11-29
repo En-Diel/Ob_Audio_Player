@@ -41,7 +41,7 @@ public class PlayerActivity extends AppCompatActivity {
     ImageView shuffleBtn;
     ImageView repeatBtn;
     ImageView backBtn;
-    ImageView playPause;
+    ImageView playPauseBtn;
     SeekBar seekBar;
     int position = -1;
     BlurView blurView;
@@ -49,6 +49,9 @@ public class PlayerActivity extends AppCompatActivity {
     static Uri uri;
     MediaPlayer mediaPlayer;
     Handler handler = new Handler();
+    private Thread playThread;
+    private Thread prevThread;
+    private Thread nextThread;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -105,9 +108,9 @@ public class PlayerActivity extends AppCompatActivity {
             }
         });
     }
-
+    // For Player Activity Blur Effect
     private void blurBackground() {
-        float radius = 21f; // Maximum is 25f
+        float radius = 18f; // Maximum is 25f
         View decorView = getWindow().getDecorView();
         ViewGroup rootView = (ViewGroup) decorView.findViewById(android.R.id.content);
         Drawable windowBackground = decorView.getBackground();
@@ -136,7 +139,7 @@ public class PlayerActivity extends AppCompatActivity {
         position = getIntent().getIntExtra("position", -1);
         tracksList = musicFiles;
         if (tracksList != null) {
-            playPause.setImageResource(R.drawable.ic_pause);
+            playPauseBtn.setImageResource(R.drawable.ic_pause);
             uri = Uri.parse(tracksList.get(position).getPath());
         }
         if (mediaPlayer != null) {
@@ -155,16 +158,16 @@ public class PlayerActivity extends AppCompatActivity {
     private void metaData(Uri uri) {
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         retriever.setDataSource(uri.toString());
-        int durationTotalTime = Integer.parseInt(tracksList.get(position).getDuration());
+        int durationTotalTime = Integer.parseInt(tracksList.get(position).getDuration()) / 1000;
         durationTotal.setText(formattedTime(durationTotalTime));
         byte[] art = retriever.getEmbeddedPicture();
         if (art != null) {
             RequestOptions options = new RequestOptions();
-            Glide.with(this).asBitmap().load(art).into(blurCoverArt);
-            Glide.with(this).asBitmap().load(art).into(coverArt);
+            Glide.with(this).asBitmap().load(art).centerCrop().into(blurCoverArt);
+            Glide.with(this).asBitmap().load(art).centerCrop().into(coverArt);
         }else {
-            Glide.with(this).asBitmap().load(R.drawable.homestu).into(blurCoverArt);
-            Glide.with(this).asBitmap().load(R.drawable.homestu).into(coverArt);
+            Glide.with(this).asBitmap().load(R.drawable.homestu).centerCrop().into(blurCoverArt);
+            Glide.with(this).asBitmap().load(R.drawable.homestu).centerCrop().into(coverArt);
         }
     }
 
@@ -181,7 +184,69 @@ public class PlayerActivity extends AppCompatActivity {
         repeatBtn = findViewById(R.id.idIVRepeat);
         backBtn = findViewById(R.id.idIVPlayerBackBtn);
         seekBar = findViewById(R.id.idSeekBar);
-        playPause = findViewById(R.id.idIVPlayPauseBtn);
+        playPauseBtn = findViewById(R.id.idIVPlayPauseBtn);
         blurView = findViewById(R.id.idBlurView);
+    }
+
+    @Override
+    protected void onResume() {
+        playThreadBtn();
+        nextThreadBtn();
+        prevThreadBtn();
+        super.onResume();
+    }
+
+    private void prevThreadBtn() {
+    }
+
+    private void nextThreadBtn() {
+    }
+
+    private void playThreadBtn() {
+        playThread = new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                playPauseBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        playPauseBtnClicked();
+                    }
+                });
+            }
+        };
+        playThread.start();
+    }
+
+    private void playPauseBtnClicked() {
+        if (mediaPlayer.isPlaying()) {
+            playPauseBtn.setImageResource(R.drawable.ic_play);
+            mediaPlayer.pause();
+            seekBar.setMax(mediaPlayer.getDuration() / 1000);
+            PlayerActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mediaPlayer != null) {
+                        int mCurrentPosition = mediaPlayer.getCurrentPosition() / 1000;
+                        seekBar.setProgress(mCurrentPosition);
+                    }
+                    handler.postDelayed(this, 1000);
+                }
+            });
+        }else {
+            playPauseBtn.setImageResource(R.drawable.ic_pause);
+            mediaPlayer.start();
+            seekBar.setMax(mediaPlayer.getDuration() / 1000);
+            PlayerActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mediaPlayer != null) {
+                        int mCurrentPosition = mediaPlayer.getCurrentPosition() / 1000;
+                        seekBar.setProgress(mCurrentPosition);
+                    }
+                    handler.postDelayed(this, 1000);
+                }
+            });
+        }
     }
 }
