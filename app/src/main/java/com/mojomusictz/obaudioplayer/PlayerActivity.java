@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import eightbitlab.com.blurview.BlurView;
 import eightbitlab.com.blurview.RenderScriptBlur;
 
-public class PlayerActivity extends AppCompatActivity {
+public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnCompletionListener{
     ActionBar actionBar;
     TextView trackTitle;
     TextView artistName;
@@ -84,6 +84,8 @@ public class PlayerActivity extends AppCompatActivity {
         getIntentMethod();
         artistName.setText(tracksList.get(position).getArtist()); // Set artist name
         trackTitle.setText(tracksList.get(position).getTitle()); // set track name
+        // This enables the next audio to be played when the current one ends
+        mediaPlayer.setOnCompletionListener(this);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -117,7 +119,7 @@ public class PlayerActivity extends AppCompatActivity {
     }
     // For Player Activity Blur Effect
     private void blurBackground() {
-        float radius = 10f; // Maximum is 25f
+        float radius = 5f; // Maximum is 25f
         View decorView = getWindow().getDecorView();
         ViewGroup rootView = (ViewGroup) decorView.findViewById(android.R.id.content);
         Drawable windowBackground = decorView.getBackground();
@@ -265,6 +267,8 @@ public class PlayerActivity extends AppCompatActivity {
                     handler.postDelayed(this, 1000);
                 }
             });
+            // This enables the next audio to be played when the current one ends
+            mediaPlayer.setOnCompletionListener(this);
             playPauseBtn.setImageResource(R.drawable.ic_pause);
             mediaPlayer.start();
         }else {
@@ -287,6 +291,8 @@ public class PlayerActivity extends AppCompatActivity {
                     handler.postDelayed(this, 1000);
                 }
             });
+            // This enables the next audio to be played when the current one ends
+            mediaPlayer.setOnCompletionListener(this);
             playPauseBtn.setImageResource(R.drawable.ic_play);
         }
     }
@@ -328,6 +334,8 @@ public class PlayerActivity extends AppCompatActivity {
                     handler.postDelayed(this, 1000);
                 }
             });
+            // This enables the next audio to be played when the current one ends
+            mediaPlayer.setOnCompletionListener(this);
             playPauseBtn.setImageResource(R.drawable.ic_pause);
             mediaPlayer.start();
         }else {
@@ -350,6 +358,8 @@ public class PlayerActivity extends AppCompatActivity {
                     handler.postDelayed(this, 1000);
                 }
             });
+            // This enables the next audio to be played when the current one ends
+            mediaPlayer.setOnCompletionListener(this);
             playPauseBtn.setImageResource(R.drawable.ic_play);
         }
     }
@@ -439,5 +449,15 @@ public class PlayerActivity extends AppCompatActivity {
             }
         });
         imageView.startAnimation(animOut);
+    }
+    // This is for when audio ends it starts the next one
+    @Override
+    public void onCompletion(MediaPlayer mp) {
+        nextBtnClicked();
+        if (mediaPlayer != null)  {
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
+            mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(this);
+        }
     }
 }
