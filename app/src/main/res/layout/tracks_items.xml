@@ -69,9 +69,9 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:background="@drawable/custom_borderless_ripple"
-        android:padding="5dp"
         android:clickable="true"
         android:focusable="true"
+        android:padding="5dp"
         android:src="@drawable/ic_more" />
 
 </RelativeLayout>

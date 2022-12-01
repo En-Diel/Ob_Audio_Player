@@ -8,6 +8,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.palette.graphics.Palette;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -23,6 +24,8 @@ import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -114,7 +117,7 @@ public class PlayerActivity extends AppCompatActivity {
     }
     // For Player Activity Blur Effect
     private void blurBackground() {
-        float radius = 18f; // Maximum is 25f
+        float radius = 10f; // Maximum is 25f
         View decorView = getWindow().getDecorView();
         ViewGroup rootView = (ViewGroup) decorView.findViewById(android.R.id.content);
         Drawable windowBackground = decorView.getBackground();
@@ -167,12 +170,13 @@ public class PlayerActivity extends AppCompatActivity {
         byte[] art = retriever.getEmbeddedPicture();
         Bitmap bitmap;
         if (art != null) {
-            Glide.with(this).asBitmap().load(art).centerCrop().into(blurCoverArt);
-            Glide.with(this).asBitmap().load(art).centerCrop().into(coverArt);
             bitmap = BitmapFactory.decodeByteArray(art, 0, art.length);
+            imageAnimation(this, blurCoverArt, bitmap);
+            imageAnimation(this, coverArt, bitmap);
             Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
                 @Override
                 public void onGenerated(@Nullable Palette palette) {
+                    //assert palette != null; // Add this line to avoid null pointer exception
                     Palette.Swatch swatch = palette.getDominantSwatch();
                     if (swatch != null) {
                         ImageView playerBackBtn = findViewById(R.id.idIVPlayerBackBtn);
@@ -194,8 +198,8 @@ public class PlayerActivity extends AppCompatActivity {
                 }
             });
         }else {
-            Glide.with(this).asBitmap().load(R.drawable.homestu).centerCrop().into(blurCoverArt);
-            Glide.with(this).asBitmap().load(R.drawable.homestu).centerCrop().into(coverArt);
+            Glide.with(this).asBitmap().load(R.drawable.ic_headphones).centerCrop().into(blurCoverArt);
+            Glide.with(this).asBitmap().load(R.drawable.ic_headphones).centerCrop().into(coverArt);
         }
     }
 
@@ -396,5 +400,44 @@ public class PlayerActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+    // Image animation method when click next or previous
+    public void imageAnimation(Context context, ImageView imageView, Bitmap bitmap) {
+        Animation animOut = AnimationUtils.loadAnimation(context, android.R.anim.fade_out);
+        Animation animIn = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);
+        animOut.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                Glide.with(context).load(bitmap).into(imageView);
+                animIn.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                imageView.startAnimation(animIn);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        imageView.startAnimation(animOut);
     }
 }

@@ -29,12 +29,13 @@
         <entry key="app/src/main/res/drawable/seekbar_drawable_thum.xml" value="0.3026041666666667" />
         <entry key="app/src/main/res/drawable/splash_background.xml" value="0.29794871794871797" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2864583333333333" />
-        <entry key="app/src/main/res/layout/activity_player.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_player.xml" value="0.335" />
         <entry key="app/src/main/res/layout/albums_items.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/artists_items.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_albums.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_tracks.xml" value="0.28205128205128205" />
         <entry key="app/src/main/res/layout/tracks_items.xml" value="0.5" />
+        <entry key="app/src/main/res/menu/popup_menu.xml" value="0.335" />
       </map>
     </option>
   </component>
