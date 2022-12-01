@@ -2,13 +2,17 @@ package com.mojomusictz.obaudioplayer;
 
 import static com.mojomusictz.obaudioplayer.MainActivity.musicFiles;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.palette.graphics.Palette;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.media.MediaMetadata;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
@@ -161,10 +165,34 @@ public class PlayerActivity extends AppCompatActivity {
         int durationTotalTime = Integer.parseInt(tracksList.get(position).getDuration()) / 1000;
         durationTotal.setText(formattedTime(durationTotalTime));
         byte[] art = retriever.getEmbeddedPicture();
+        Bitmap bitmap;
         if (art != null) {
-            RequestOptions options = new RequestOptions();
             Glide.with(this).asBitmap().load(art).centerCrop().into(blurCoverArt);
             Glide.with(this).asBitmap().load(art).centerCrop().into(coverArt);
+            bitmap = BitmapFactory.decodeByteArray(art, 0, art.length);
+            Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
+                @Override
+                public void onGenerated(@Nullable Palette palette) {
+                    Palette.Swatch swatch = palette.getDominantSwatch();
+                    if (swatch != null) {
+                        ImageView playerBackBtn = findViewById(R.id.idIVPlayerBackBtn);
+                        ImageView playerMenuMoreBtn = findViewById(R.id.idIVPlayerMenu);
+                        ImageView player_gradient = findViewById(R.id.idIVGradient);
+                        ImageView player_gradient_top = findViewById(R.id.idIVGradientTop);
+                        player_gradient.setBackgroundResource(R.drawable.player_gradient);
+                        player_gradient_top.setBackgroundResource(R.drawable.player_gradient_top);
+
+                        GradientDrawable gradientDrawableBgBottom = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
+                                new int[]{swatch.getRgb(), 0x00000000});
+                        player_gradient.setBackground(gradientDrawableBgBottom);
+                        GradientDrawable gradientDrawableBgTop = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
+                                new int[]{0xff000000, swatch.getRgb()});
+                        player_gradient_top.setBackground(gradientDrawableBgTop);
+                        trackTitle.setTextColor(Color.WHITE);
+                        artistName.setTextColor(Color.WHITE);
+                    }
+                }
+            });
         }else {
             Glide.with(this).asBitmap().load(R.drawable.homestu).centerCrop().into(blurCoverArt);
             Glide.with(this).asBitmap().load(R.drawable.homestu).centerCrop().into(coverArt);

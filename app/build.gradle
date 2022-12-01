@@ -46,4 +46,6 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     // BlurView Library
     implementation 'com.eightbitlab:blurview:1.6.3'
+    // Palette Library
+    implementation "androidx.palette:palette:1.0.0"
 }

@@ -24,12 +24,17 @@
             android:src="@drawable/homestu" />
 
         <!-- TODO: THIS IS GRADIENT EFFECT, NOT SHOWN NOW  -->
-        <!--<ImageView
+        <ImageView
+            android:id="@+id/idIVGradientTop"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+             />
+        <ImageView
             android:id="@+id/idIVGradient"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_alignParentBottom="true"
-            android:src="@drawable/player_gradient" />-->
+             />
 
         <!-- Blur Effect, will affect all the elements above-->
         <eightbitlab.com.blurview.BlurView
@@ -87,12 +92,12 @@
             android:id="@+id/idIVPlayerMenu"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/ic_menu"
             android:layout_marginTop="58dp"
-            android:layout_marginEnd="16dp"/>
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_menu" />
         <!-- This enables RadiusCorners in the image view -->
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/idIVCoverArt"
@@ -139,9 +144,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="40dp"
-                android:thumbTint="@color/white"
+                android:progressBackgroundTint="@color/white"
                 android:progressTint="@color/white"
-                android:progressBackgroundTint="@color/white" />
+                android:thumbTint="@color/white" />
 
         </RelativeLayout>
 
