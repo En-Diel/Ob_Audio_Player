@@ -172,7 +172,7 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
         byte[] art = retriever.getEmbeddedPicture();
         Bitmap bitmap;
         if (art != null) {
-            bitmap = BitmapFactory.decodeByteArray(art, 0, art.length);
+            bitmap = BitmapFactory.decodeByteArray(art, 0, art.length); // Create a bitmap and assign it
             imageAnimation(this, blurCoverArt, bitmap);
             imageAnimation(this, coverArt, bitmap);
             Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
@@ -181,8 +181,6 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
                     //assert palette != null; // Add this line to avoid null pointer exception
                     Palette.Swatch swatch = palette.getDominantSwatch();
                     if (swatch != null) {
-                        ImageView playerBackBtn = findViewById(R.id.idIVPlayerBackBtn);
-                        ImageView playerMenuMoreBtn = findViewById(R.id.idIVPlayerMenu);
                         ImageView player_gradient = findViewById(R.id.idIVGradient);
                         ImageView player_gradient_top = findViewById(R.id.idIVGradientTop);
                         player_gradient.setBackgroundResource(R.drawable.player_gradient);
@@ -360,7 +358,8 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
             });
             // This enables the next audio to be played when the current one ends
             mediaPlayer.setOnCompletionListener(this);
-            playPauseBtn.setImageResource(R.drawable.ic_play);
+            //playPauseBtn.setImageResource(R.drawable.ic_play); // commented this line to avoid the pause btn not showing
+            // After onCompleteListener
         }
     }
     // Thread for play/pause btn
