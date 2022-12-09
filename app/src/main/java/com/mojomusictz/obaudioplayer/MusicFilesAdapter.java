@@ -1,7 +1,10 @@
 package com.mojomusictz.obaudioplayer;
 
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,7 +18,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.snackbar.Snackbar;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class MusicFilesAdapter extends RecyclerView.Adapter<MusicFilesAdapter.MyViewHolder> {
@@ -75,8 +80,8 @@ public class MusicFilesAdapter extends RecyclerView.Adapter<MusicFilesAdapter.My
                                 setAsRingtone();
                                 break;
                             case R.id.idDelete:
-                                Toast.makeText(mContext, "Delete Clicked", Toast.LENGTH_SHORT).show(); // Show info for debugging
-                                deleteFile();
+                                //Toast.makeText(mContext, "Delete Clicked", Toast.LENGTH_SHORT).show(); // Show info for debugging
+                                deleteFile(position, v);
                                 break;
                         }
                         return true;
@@ -127,6 +132,19 @@ public class MusicFilesAdapter extends RecyclerView.Adapter<MusicFilesAdapter.My
     private void getTrackInfo() {
     }
     // Function to show track's information/data
-    private void deleteFile() {
+    private void deleteFile(int position, View v) {
+        Uri contentUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                Long.parseLong(mFiles.get(position).getId()));
+        File file = new File(mFiles.get(position).getPath());
+        boolean deleted = file.delete();
+        if (deleted) {
+            mContext.getContentResolver().delete(contentUri, null, null);
+            mFiles.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, mFiles.size());
+            Snackbar.make(v,"File Deleted", Snackbar.LENGTH_SHORT).show();
+        }else {
+            Snackbar.make(v, "File Can't Be Deleted", Snackbar.LENGTH_SHORT).show();
+        }
     }
 }
