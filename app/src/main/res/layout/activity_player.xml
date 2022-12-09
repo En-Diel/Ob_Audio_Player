@@ -202,11 +202,11 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="32dp"
             android:layout_marginBottom="72dp"
-            android:src="@drawable/ic_shuffle_off"
-            android:layout_alignParentBottom="true"/>
+            android:src="@drawable/ic_shuffle_off" />
     </RelativeLayout>
 
 </RelativeLayout>

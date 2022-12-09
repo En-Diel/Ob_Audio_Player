@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     ViewPager2FragmentAdapter viewPager2FragmentAdapter;
     public static final int REQUEST_CODE = 1; // Code for checking the permissions
     static ArrayList<MusicFilesModel> musicFiles;
+    static boolean shuffleBoolean = false;
+    static boolean repeatBoolean = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
