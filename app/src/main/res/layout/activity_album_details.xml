@@ -36,12 +36,30 @@
 
         <ImageView
             android:id="@+id/idIVPlayerBackBtn"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="30dp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:src="@drawable/ic_back2" />
+
+        <ImageView
+            android:id="@+id/idIVSearchBtn"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="32dp"
+            android:layout_toEndOf="@+id/idIVPlayerBackBtn"
+            android:src="@drawable/ic_search" />
+
+        <ImageView
+            android:id="@+id/idIVSortBtn"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="32dp"
+            android:layout_toEndOf="@+id/idIVPlayerBackBtn"
+            android:src="@drawable/ic_sort" />
 
         <TextView
             android:id="@+id/idTVTrackTitle"
@@ -85,10 +103,10 @@
 
         <ImageView
             android:id="@+id/idIVPlayerMenu"
-            android:layout_width="30dp"
+            android:layout_width="25dp"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/ic_more" />
 
