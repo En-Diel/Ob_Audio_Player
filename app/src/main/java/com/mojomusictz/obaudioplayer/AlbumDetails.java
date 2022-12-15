@@ -4,6 +4,7 @@ import static com.mojomusictz.obaudioplayer.MainActivity.musicFiles;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
@@ -33,6 +34,7 @@ public class AlbumDetails extends AppCompatActivity {
     Button albumPlayBtn;
     RecyclerView albumDetailsRecyclerView;
     ArrayList<MusicFilesModel> albumSongs = new ArrayList<>(); // This will be the albums songs to be displayed
+    AlbumDetailsAdapter albumDetailsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,5 +95,15 @@ public class AlbumDetails extends AppCompatActivity {
         albumCoverArt = findViewById(R.id.idIVAlbumDetailsCoverArt);
         albumCoverArtBlur = findViewById(R.id.idIVAlbumDetailsCoverArtBlur);
         albumDetailsRecyclerView = findViewById(R.id.idAlbumDetailsRecyclerView);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!(albumSongs.size() < 1)) {
+            albumDetailsAdapter = new AlbumDetailsAdapter(this, albumSongs);
+            albumDetailsRecyclerView.setAdapter(albumDetailsAdapter);
+            albumDetailsRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        }
     }
 }
