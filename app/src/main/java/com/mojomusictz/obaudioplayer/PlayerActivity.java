@@ -74,7 +74,9 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-
+        /*
+          These code below with getWindow helps to achieve the blur effect
+         */
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); // Ignores the top/bottom app system bars
         // and fill it with design
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);

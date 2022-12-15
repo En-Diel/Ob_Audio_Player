@@ -1,6 +1,7 @@
 package com.mojomusictz.obaudioplayer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,15 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.MyViewHolder
         }else {
             Glide.with(mContext).asBitmap().load(R.drawable.ic_headphones).into(holder.albumArtWork);
         }
+        // Set OnClick listener when user click on an item
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, AlbumDetails.class);
+                intent.putExtra("albumName", albumList.get(position).getAlbum()); // We pass album name
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
