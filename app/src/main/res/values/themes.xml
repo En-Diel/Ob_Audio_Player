@@ -14,13 +14,15 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-    <!-- Style for rounded Corners -->
+    <!-- Style for rounded Corners in tracks lists-->
     <style name="roundedCornersImageView" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">10dp</item>
     </style>
+    <!-- Style for rounded Corners Album Art not blurred one-->
     <style name="roundedCornersImageView2" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">40dp</item>
     </style>
+
 </resources>

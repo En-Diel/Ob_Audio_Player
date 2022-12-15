@@ -3,29 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
-    android:id="@+id/idRLContainerPlayer"
+    android:layout_height="match_parent"
+    android:id="@+id/idAlbumDetailsRLContainerMain"
     tools:context=".PlayerActivity">
+
     <RelativeLayout
-        android:id="@+id/idPlayerBtnsContainerRL"
+        android:id="@+id/idAlbumDetailsContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="350dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentEnd="true">
 
         <ImageView
-            android:id="@+id/idIVCoverArtBlur"
+            android:id="@+id/idIVAlbumDetailsCoverArtBlur"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:tint="#48FFFFFF"
             android:scaleType="centerCrop"
-            android:src="@drawable/homestu" />
+            android:src="@drawable/homestu"
+            android:tint="#48FFFFFF" />
 
         <!-- Blur Effect, will affect all the elements above-->
         <eightbitlab.com.blurview.BlurView
-            android:id="@+id/idBlurView"
+            android:id="@+id/idAlbumDetailsBlurView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -35,43 +35,44 @@
         </eightbitlab.com.blurview.BlurView>
 
         <ImageView
-            android:id="@+id/idIVPlayerBackBtn"
+            android:id="@+id/idIVAlbumDetailsBackBtn"
             android:layout_width="25dp"
-            android:layout_height="30dp"
+            android:layout_height="25dp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="40dp"
             android:src="@drawable/ic_back2" />
 
         <ImageView
-            android:id="@+id/idIVSearchBtn"
+            android:id="@+id/idIVAlbumDetailsSearchBtn"
             android:layout_width="25dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="32dp"
-            android:layout_toEndOf="@+id/idIVPlayerBackBtn"
+            android:layout_height="25dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="264dp"
+            android:layout_toEndOf="@+id/idIVAlbumDetailsBackBtn"
+            android:layout_toStartOf="@+id/idIVAlbumDetailsMenu"
             android:src="@drawable/ic_search" />
 
         <ImageView
-            android:id="@+id/idIVSortBtn"
+            android:id="@+id/idIVAlbumDetailsSortBtn"
             android:layout_width="25dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="250dp"
-            android:layout_marginTop="32dp"
-            android:layout_toEndOf="@+id/idIVPlayerBackBtn"
+            android:layout_height="25dp"
+            android:layout_marginLeft="134dp"
+            android:layout_marginTop="40dp"
+            android:layout_toStartOf="@+id/idIVAlbumDetailsMenu"
+            android:layout_toEndOf="@+id/idIVAlbumDetailsBackBtn"
             android:src="@drawable/ic_sort" />
 
         <TextView
             android:id="@+id/idTVTrackTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/idIVPlayerBackBtn"
-            android:layout_marginTop="32dp"
-            android:layout_toStartOf="@+id/idIVPlayerMenu"
-            android:layout_toEndOf="@+id/idIVCoverArt"
+            android:layout_below="@+id/idIVAlbumDetailsBackBtn"
+            android:layout_marginTop="24dp"
+            android:layout_toStartOf="@+id/idIVAlbumDetailsMenu"
+            android:layout_toEndOf="@+id/idIVAlbumDetailsCoverArt"
             android:maxLines="1"
-            android:paddingTop="4dp"
-            android:text="@string/track_title"
+            android:text="Album Title"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -81,61 +82,74 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/idTVTrackTitle"
-            android:layout_toStartOf="@+id/idIVPlayerMenu"
-            android:layout_toEndOf="@+id/idIVCoverArt"
+            android:layout_toStartOf="@+id/idIVAlbumDetailsMenu"
+            android:layout_toEndOf="@+id/idIVAlbumDetailsCoverArt"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@string/artist_name"
             android:textColor="@color/black"
             android:textSize="13sp" />
+
         <TextView
             android:id="@+id/idTVAlbumYear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/idTVArtistName"
-            android:layout_toStartOf="@+id/idIVPlayerMenu"
-            android:layout_toEndOf="@+id/idIVCoverArt"
+            android:layout_toStartOf="@+id/idIVAlbumDetailsMenu"
+            android:layout_toEndOf="@+id/idIVAlbumDetailsCoverArt"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@string/artist_name"
+            android:text="2022"
             android:textColor="@color/grey_700"
             android:textSize="13sp" />
 
         <ImageView
-            android:id="@+id/idIVPlayerMenu"
+            android:id="@+id/idIVAlbumDetailsMenu"
             android:layout_width="25dp"
-            android:layout_height="30dp"
+            android:layout_height="25dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/ic_more" />
 
         <!-- TODO: I'LL ADD ON SWIPE ACTION FOR NEXT AND PREVIOUS -->
         <!-- This enables RadiusCorners in the image view -->
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/idIVCoverArt"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_below="@+id/idIVPlayerBackBtn"
+            android:id="@+id/idIVAlbumDetailsCoverArt"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/idIVAlbumDetailsBackBtn"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
             android:background="@color/black"
             android:scaleType="fitXY"
             android:src="@drawable/homestu"
-            app:shapeAppearanceOverlay="@style/roundedCornersImageView2" />
+            app:shapeAppearanceOverlay="@style/roundedCornersImageView" />
 
         <Button
-            android:layout_width="100dp"
+            android:id="@+id/idAlbumDetailsPlayBtn"
+            android:layout_width="150dp"
             android:layout_height="40dp"
-            android:layout_below="@+id/idIVCoverArt"
+            android:layout_below="@+id/idIVAlbumDetailsCoverArt"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_shape"
             android:text="PLAY"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/pink_700"/>
+            android:textColor="@color/white" />
 
-        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/idAlbumDetailsRecyclerViewContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/idAlbumDetailsContainer">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/idAlbumDetailsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
 
