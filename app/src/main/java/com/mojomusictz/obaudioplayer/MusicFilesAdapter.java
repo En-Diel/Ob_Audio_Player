@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class MusicFilesAdapter extends RecyclerView.Adapter<MusicFilesAdapter.MyViewHolder> {
 
-    private ArrayList<MusicFilesModel> mFiles;
+    static ArrayList<MusicFilesModel> mFiles;
     private Context mContext;
 
     MusicFilesAdapter(Context mContext, ArrayList<MusicFilesModel> mFiles) {
@@ -146,5 +146,12 @@ public class MusicFilesAdapter extends RecyclerView.Adapter<MusicFilesAdapter.My
         }else {
             Snackbar.make(v, "File Can't Be Deleted", Snackbar.LENGTH_SHORT).show();
         }
+    }
+
+    // When his function is invoked, it will contain the filted/searched songs
+    void updatedList(ArrayList<MusicFilesModel> musicFilesArrayList){
+        mFiles = new ArrayList<>();
+        mFiles.addAll(musicFilesArrayList);
+        notifyDataSetChanged();
     }
 }

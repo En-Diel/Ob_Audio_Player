@@ -2,6 +2,7 @@ package com.mojomusictz.obaudioplayer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +18,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
@@ -27,7 +29,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     // Declare variables
     private TabLayout tabLayout;
     private ViewPager2 viewPager2;
@@ -138,6 +140,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search, menu);
+        MenuItem menuItem = menu.findItem(R.id.search_option);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setOnQueryTextListener(this); // The OnQueryTextListener will be called
+
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        String userInput = newText.toLowerCase();
+        ArrayList<MusicFilesModel> filteredSongs = new ArrayList<>(); // An ArrayList of filtered songs
+        ArrayList<MusicFilesModel> filteredAlbums = new ArrayList<>(); // An ArrayList of filtered albums
+        for (MusicFilesModel song: musicFiles){ // We loop into the object
+            if (song.getTitle().toLowerCase().contains(userInput)) {
+                filteredSongs.add(song);
+            }
+        }
+        TracksFragment.musicFilesAdapter.updatedList(filteredSongs);
+        return true;
     }
 }

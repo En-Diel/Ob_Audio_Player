@@ -18,7 +18,7 @@ import java.util.Random;
 
 public class TracksFragment extends Fragment {
     RecyclerView tracksRecyclerView;
-    MusicFilesAdapter musicFilesAdapter;
+    static MusicFilesAdapter musicFilesAdapter;
     SwipeRefreshLayout swipeRefreshLayout;
 
     public TracksFragment() {

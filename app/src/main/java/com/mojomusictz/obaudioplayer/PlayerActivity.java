@@ -4,6 +4,7 @@ import static com.mojomusictz.obaudioplayer.AlbumDetailsAdapter.albumSongs;
 import static com.mojomusictz.obaudioplayer.MainActivity.musicFiles;
 import static com.mojomusictz.obaudioplayer.MainActivity.repeatBoolean;
 import static com.mojomusictz.obaudioplayer.MainActivity.shuffleBoolean;
+import static com.mojomusictz.obaudioplayer.MusicFilesAdapter.mFiles;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -182,7 +183,7 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
         if (sender != null && sender.equals("albumDetails")) {
             tracksList = albumSongs;
         }else {
-            tracksList = musicFiles;
+            tracksList = mFiles;
         }
         if (tracksList != null) {
             playPauseBtn.setImageResource(R.drawable.ic_pause);
