@@ -1,5 +1,6 @@
 package com.mojomusictz.obaudioplayer;
 
+import static com.mojomusictz.obaudioplayer.AlbumDetailsAdapter.albumSongs;
 import static com.mojomusictz.obaudioplayer.MainActivity.musicFiles;
 import static com.mojomusictz.obaudioplayer.MainActivity.repeatBoolean;
 import static com.mojomusictz.obaudioplayer.MainActivity.shuffleBoolean;
@@ -177,7 +178,12 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
 
     private void getIntentMethod() {
         position = getIntent().getIntExtra("position", -1);
-        tracksList = musicFiles;
+        String sender = getIntent().getStringExtra("sender"); // We get the stringExtra from AlbumDetailsAdapter
+        if (sender != null && sender.equals("albumDetails")) {
+            tracksList = albumSongs;
+        }else {
+            tracksList = musicFiles;
+        }
         if (tracksList != null) {
             playPauseBtn.setImageResource(R.drawable.ic_pause);
             uri = Uri.parse(tracksList.get(position).getPath());
