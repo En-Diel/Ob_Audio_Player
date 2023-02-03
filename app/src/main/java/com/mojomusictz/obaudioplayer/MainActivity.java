@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
@@ -131,5 +132,12 @@ public class MainActivity extends AppCompatActivity {
             cursor.close();
         }
         return tempTrackList;
+    }
+
+    // This implements the search menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }
