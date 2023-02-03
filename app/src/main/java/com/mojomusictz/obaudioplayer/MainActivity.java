@@ -35,9 +35,10 @@ public class MainActivity extends AppCompatActivity {
 
     ViewPager2FragmentAdapter viewPager2FragmentAdapter;
     public static final int REQUEST_CODE = 1; // Code for checking the permissions
-    static ArrayList<MusicFilesModel> musicFiles;
+    static ArrayList<MusicFilesModel> musicFiles; // This arraylist of type MusicFilesModel Model contains all the audio
     static boolean shuffleBoolean = false;
     static boolean repeatBoolean = false;
+    static ArrayList<MusicFilesModel> albums = new ArrayList<>(); // This ArrayList will contain album songs
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<MusicFilesModel> getAllTracks(Context context) {
         // Initialize the ArrayList model
         ArrayList<MusicFilesModel> tempTrackList = new ArrayList<>();
+        ArrayList<String> duplicate = new ArrayList<>(); /* This ArrayList of type string will keep track of all the songs added to the
+        ArrayList of Albums, so as to detect the duplicate audio in that arraylist */
 
         Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         String[] projection = {MediaStore.Audio.Media.DATA, // Equals to path
@@ -120,6 +123,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Path" + path,"Album" + album);
                 // Then add the data into the empty initialized ArrayList
                 tempTrackList.add(musicFilesModel);
+                if(!duplicate.contains(album)) { // If duplicate ArrayList doesn't contain the string "album"
+                    albums.add(musicFilesModel);
+                    duplicate.add(album); // Update the ArrayList
+                }
             }
             cursor.close();
         }

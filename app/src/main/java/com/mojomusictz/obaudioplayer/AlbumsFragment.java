@@ -1,6 +1,7 @@
 package com.mojomusictz.obaudioplayer;
 
 import static com.mojomusictz.obaudioplayer.AlbumAdapter.albumList;
+import static com.mojomusictz.obaudioplayer.MainActivity.albums;
 import static com.mojomusictz.obaudioplayer.MainActivity.musicFiles;
 
 import android.os.Bundle;
@@ -34,8 +35,8 @@ public class AlbumsFragment extends Fragment {
         albumRecyclerView = view.findViewById(R.id.idAlbumRecyclerView);
         swipeRefreshLayout = view.findViewById(R.id.idAlbumsRefreshLayout);
         albumRecyclerView.setHasFixedSize(true);
-        if (!(musicFiles.size() < 1)) {
-            albumAdapter = new AlbumAdapter(getContext(), musicFiles);
+        if (!(albums.size() < 1)) {
+            albumAdapter = new AlbumAdapter(getContext(), albums);
             albumRecyclerView.setAdapter(albumAdapter);
             albumRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
             // Set the color of a refreshing icon
